@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YOUR NAME — Portfolio</title>
+  <meta name="description" content="Portfolio of YOUR NAME — resume, projects, experience, and contact." />
+
+  <!-- Social share -->
+  <meta property="og:title" content="YOUR NAME — Portfolio" />
+  <meta property="og:description" content="Resume, projects, and contact." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yourusername.github.io" />
+  <meta property="og:image" content="og-image.png" />
+
+  <!-- Favicon (replace with your own file in the repo root) -->
+  <link rel="icon" href="favicon.ico" />
+
+  <style>
+    /* ===== Base / Theme ===== */
+    :root {
+      --bg: #0b0c0f;
+      --surface: #13151a;
+      --text: #e6e7eb;
+      --muted: #a6a8ae;
+      --primary: #4f8cff; /* accent */
+      --ring: rgba(79, 140, 255, 0.35);
+      --card: #161923;
+      --border: #242836;
+      --code: #0e1117;
+      --maxw: 980px;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #ffffff;
+        --surface: #f6f7fb;
+        --text: #0b0c0f;
+        --muted: #4a4d57;
+        --primary: #265ef7;
+        --ring: rgba(38, 94, 247, 0.25);
+        --card: #ffffff;
+        --border: #e6e8ef;
+        --code: #f6f8fa;
+      }
+    }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg); color: var(--text);
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: var(--maxw); margin: 0 auto; padding: 24px; }
+    .wrap { display: grid; gap: 20px; }
+
+    /* Header */
+    header.site { position: sticky; top: 0; backdrop-filter: saturate(120%) blur(6px); background: color-mix(in oklab, var(--bg), transparent 30%); border-bottom: 1px solid var(--border); z-index: 10; }
+    .site-row { display: flex; align-items: center; justify-content: space-between; max-width: var(--maxw); margin: 0 auto; padding: 10px 24px; }
+    .brand { display:flex; gap:12px; align-items:center; }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--border) center/cover no-repeat; }
+    .name { font-weight: 700; letter-spacing: 0.3px; }
+    nav a { margin-left: 16px; padding: 6px 8px; border-radius: 8px; }
+    nav a:focus-visible, button:focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; }
+
+    .btn { display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius: 10px; border:1px solid var(--border); background: var(--surface); color: var(--text); cursor:pointer; }
+    .btn:hover { background: color-mix(in oklab, var(--surface), var(--primary) 5%); text-decoration:none; }
+
+    /* Hero */
+    .hero { display:grid; gap:18px; padding: 32px 0 8px; }
+    .title { font-size: clamp(28px, 4vw, 40px); line-height: 1.2; font-weight: 800; letter-spacing: 0.2px; }
+    .subtitle { color: var(--muted); max-width: 70ch; }
+    .chips { display:flex; flex-wrap: wrap; gap:10px; }
+    .chip { padding:6px 10px; border:1px solid var(--border); background: var(--card); border-radius: 999px; font-size: 14px; }
+
+    /* Sections */
+    section { padding: 24px 0; }
+    h2 { font-size: 22px; margin: 0 0 12px; letter-spacing: 0.2px; }
+    .grid { display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+    /* Cards */
+    .card { background: var(--card); border:1px solid var(--border); border-radius: 16px; padding: 16px; }
+    .card h3 { margin: 4px 0 6px; font-size: 18px; }
+    .meta { color: var(--muted); font-size: 14px; }
+    .list { margin: 10px 0 0 0; padding-left: 18px; }
+
+    /* Timeline */
+    .timeline { position: relative; }
+    .timeline::before { content:""; position:absolute; top:2px; bottom:2px; left:10px; width:2px; background: var(--border); }
+    .item { position:relative; padding-left: 28px; margin: 14px 0; }
+    .dot { position:absolute; left:6px; top:4px; width:10px; height:10px; border-radius:50%; background: var(--primary); box-shadow: 0 0 0 4px var(--ring); }
+
+    /* Footer */
+    footer { border-top:1px solid var(--border); color: var(--muted); }
+
+    /* Utilities */
+    .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .spacer { height: 2px; background: var(--border); margin: 8px 0 2px; }
+    .right { margin-left: auto; }
+    .muted { color: var(--muted); }
+
+    /* Print-friendly resume layout */
+    @media print {
+      header.site, .cta-row, .chips { display:none !important; }
+      body { background: #fff; color: #000; }
+      a { color: #000; }
+      .card, .btn { border: none; }
+      .container { max-width: none; padding: 0; }
+      section { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="muted" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">Skip to content</a>
+
+  <header class="site" role="banner">
+    <div class="site-row">
+      <div class="brand">
+        <div class="avatar" style="background-image:url('avatar.jpg')" aria-hidden="true"></div>
+        <div>
+          <div class="name">YOUR NAME</div>
+          <div class="muted" style="font-size:14px">Your Title • City, Country</div>
+        </div>
+      </div>
+      <nav aria-label="Primary">
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+        <button id="mode" class="btn" type="button" aria-label="Toggle theme">🌗</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="hero">
+      <h1 class="title">I design & build simple, fast, human‑centered products.</h1>
+      <p class="subtitle">Quick intro about who you are, what you’re best at, and the kind of roles or projects you’re aiming for. Keep it 2–3 lines with outcomes (e.g., “shipped X, improved Y by Z%”).</p>
+      <div class="chips" aria-label="Core skills">
+        <span class="chip">JavaScript</span>
+        <span class="chip">React</span>
+        <span class="chip">Node.js</span>
+        <span class="chip">UI/UX</span>
+        <span class="chip">SQL</span>
+        <span class="chip">Python</span>
+      </div>
+      <div class="row cta-row">
+        <a class="btn" href="resume.pdf" download>⬇️ Download Résumé (PDF)</a>
+        <a class="btn" href="https://github.com/yourusername" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/yourhandle" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a class="btn" href="#contact">Email</a>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Selected Projects</h2>
+      <div class="grid">
+        <article class="card">
+          <div class="row">
+            <h3>Project Name</h3>
+            <a class="right" href="#" target="_blank" rel="noreferrer">Live ↗</a>
+          </div>
+          <div class="meta">React • Node • MongoDB</div>
+          <ul class="list">
+            <li>1‑line problem → solution → <strong>impact metric</strong> (e.g., −42% load time).</li>
+            <li>Another concrete outcome or noteworthy design/eng perf detail.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="row">
+            <h3>Project Name</h3>
+            <a class="right" href="#" target="_blank" rel="noreferrer">Code ↗</a>
+          </div>
+          <div class="meta">TypeScript • Next.js</div>
+          <ul class="list">
+            <li>Brief what/why and impact. Keep it two bullets max.</li>
+            <li>Use numbers (users, %, ms, $) wherever possible.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="row">
+            <h3>Project Name</h3>
+            <span class="right muted">Case study</span>
+          </div>
+          <div class="meta">Design • Research • Prototyping</div>
+          <ul class="list">
+            <li>Problem → approach → result. Link a PDF or Notion doc if helpful.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="timeline">
+        <div class="item">
+          <div class="dot" aria-hidden="true"></div>
+          <div class="row">
+            <strong>Job Title</strong>
+            <span class="right muted">Company • 2023 — Present</span>
+          </div>
+          <ul class="list">
+            <li>Achievement with an outcome (quantify if possible).</li>
+            <li>Another bullet focused on ownership, scope, or scale.</li>
+          </ul>
+        </div>
+        <div class="item">
+          <div class="dot" aria-hidden="true"></div>
+          <div class="row">
+            <strong>Job Title</strong>
+            <span class="right muted">Company • 2021 — 2023</span>
+          </div>
+          <ul class="list">
+            <li>Impact metric or shipped feature with results.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <div class="card">
+        <div class="row">
+          <strong>University Name</strong>
+          <span class="right muted">Degree • YYYY — YYYY</span>
+        </div>
+        <div class="muted">Relevant coursework, honors, or activities.</div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="card">
+        <div class="row">
+          <div>
+            <div>Email: <a id="emailLink" href="mailto:you@example.com">you@example.com</a></div>
+            <div>Also on <a href="https://www.linkedin.com/in/yourhandle" target="_blank" rel="noreferrer">LinkedIn</a> and <a href="https://github.com/yourusername" target="_blank" rel="noreferrer">GitHub</a>.</div>
+          </div>
+          <button id="copyEmail" class="btn right" type="button">Copy email</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container" role="contentinfo">
+    <div class="row" style="justify-content:space-between; gap:12px">
+      <span class="muted">© <span id="year"></span> YOUR NAME</span>
+      <a class="muted" href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle with persistence
+    (function() {
+      const key = 'prefers-theme';
+      const btn = document.getElementById('mode');
+      const stored = localStorage.getItem(key);
+      if (stored) document.documentElement.dataset.theme = stored;
+      function setTheme(next) {
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem(key, next);
+        // Flip palette by toggling a light class (uses prefers-color-scheme as base)
+        if (next === 'light') document.documentElement.style.colorScheme = 'light';
+        else document.documentElement.style.colorScheme = 'dark';
+      }
+      btn.addEventListener('click', () => {
+        const cur = document.documentElement.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        setTheme(cur === 'dark' ? 'light' : 'dark');
+      });
+    })();
+
+    // Copy email helper
+    document.getElementById('copyEmail').addEventListener('click', async () => {
+      const email = document.getElementById('emailLink').textContent.trim();
+      try { await navigator.clipboard.writeText(email); alert('Email copied: ' + email); } catch {}
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <style>
+    /* Light/dark override via data-theme (optional explicit toggle) */
+    :root[data-theme='light'] {
+      --bg: #ffffff; --surface:#f6f7fb; --text:#0b0c0f; --muted:#4a4d57; --primary:#265ef7; --ring: rgba(38,94,247,.25); --card:#ffffff; --border:#e6e8ef; --code:#f6f8fa;
+    }
+    :root[data-theme='dark'] {
+      --bg:#0b0c0f; --surface:#13151a; --text:#e6e7eb; --muted:#a6a8ae; --primary:#4f8cff; --ring: rgba(79,140,255,.35); --card:#161923; --border:#242836; --code:#0e1117;
+    }
+  </style>
+</body>
+</html>
